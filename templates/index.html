@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+    
+    <!-- External resources can remain the same -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="app-header" style="justify-content: center; text-align: center;">
+            <h1 style="font-size:4rem; display:flex; align-items:center; gap:18px;font-style: italic;">
+                <i class="fas fa-coins" style="font-size:3.5rem; color:#1a9804;"></i>
+                STOCKAstra
+            </h1>
+        </header>
+
+        <!-- Stock Selection -->
+        <section class="card stock-selector">
+            <h2><i class="fas fa-chart-line"></i> Stock Selection</h2>
+            <div class="selector-grid">
+                <select id="stockSelect" class="form-control">
+                    <option value="">-- Select --</option>
+                </select>
+                <input type="number" id="quantity" class="form-control" min="1" value="1">
+                <button id="refreshBtn" class="btn btn-primary">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Technical Indicators -->
+        <section class="card indicators">
+            <h2><i class="fas fa-chart-area"></i> Technical Indicators</h2>
+            <div class="indicator-grid" id="indicatorContainer">
+                <!-- Filled by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Portfolio Dashboard -->
+        <section class="card">
+            <h2><i class="fas fa-wallet"></i> Portfolio</h2>
+            
+            <!-- Portfolio Metrics -->
+            <div class="portfolio-metrics">
+                <div class="metric-card">
+                    <h3>Total Value</h3>
+                    <p id="totalValue">₹1,00,000</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Cash Balance</h3>
+                    <p id="cashBalance">₹1,00,000</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Total P&L</h3>
+                    <p id="totalPnL" class="pl-neutral">₹0 (0%)</p>
+                </div>
+            </div>
+
+            <!-- Holdings Table -->
+            <div class="table-container">
+                <table class="holdings-table">
+                    <thead>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Qty</th>
+                            <th>Avg Cost</th>
+                            <th>LTP</th>
+                            <th>P&L</th>
+                            <th>% Return</th>
+                            <th>Days Held</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="holdingsBody">
+                        <tr>
+                            <td colspan="8" style="text-align:center; padding: 32px;">
+                                <img src="https://undraw.co/api/illustrations/empty" alt="No Data" style="width:120px; opacity:0.7;">
+                                <div style="color:#a084ca; margin-top:12px;">No data available</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Transaction History -->
+        <section class="card transactions">
+            <h2><i class="fas fa-receipt"></i> Transaction History</h2>
+            <div class="table-container">
+                <table class="transaction-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Ticker</th>
+                            <th>Action</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Commission</th>
+                            <th>Signal</th>
+                            <th>P&L</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionBody">
+                        <!-- Content will be filled by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <button class="btn-export-option">
+                <i class="fas fa-file-export"></i> Export Data
+            </button>
+            <div class="export-options">
+                <a id="exportHoldings" class="btn-export-option" download="holdings.csv" title="Export Holdings">
+                    <i class="fas fa-table"></i>
+                    Export Holdings 
+                </a>
+                <a id="exportTransactions" class="btn-export-option" download="transactions.csv" title="Export Transactions">
+                    <i class="fas fa-history"></i>
+                    Export Transactions
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/main.js') }}"></script>
+
+    
+
+
+    <div style="width:100%; display:flex; justify-content:center; gap:32px; margin: 40px 0;">
+        <button id="exportBtn" class="btn-export" title="Export Data">
+            <i class="fas fa-file-export"></i> Export Data
+        </button>
+        <div class="rules-card" style="
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 4px 16px rgba(114,87,120,0.10);
+            border-radius: 18px;
+            border: 1.5px solid #a084ca33;
+            color: #3d314a;
+            padding: 24px 32px;
+            max-width: 420px;
+            font-size: 1rem;
+            line-height: 1.6;
+            ">
+            <h3 style="margin-top:0; color:#a084ca; display:flex; align-items:center; gap:8px;">
+                <i class="fas fa-gavel"></i> Rules & Regulations
+            </h3>
+            <ul style="padding-left: 20px; margin: 0;">
+                <li>Use this app for educational purposes only.</li>
+                <li>All data is for demonstration and may not reflect real market values.</li>
+                <li>Do not share your login credentials.</li>
+                <li>Transactions are simulated and not real trades.</li>
+                <li>For support, contact support@stockastra.com.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

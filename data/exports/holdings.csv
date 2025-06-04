@@ -1,0 +1,2 @@
+ticker,quantity,avg_price,buy_date,stop_loss,take_profit,current_price,current_value,unrealized_pnl,unrealized_pnl_pct
+JSWSTEEL.NS,3,968.5499877929688,2025-06-04T18:23:13.887903,920.1224884033203,1065.4049865722657,968.5499877929688,2905.6499633789062,0.0,0.0

@@ -1,0 +1,578 @@
+/* Base Styles */
+:root {
+    --primary: #4361ee;
+    --success: #4cc9a0;
+    --danger: #f72585;
+    --warning: #f8961e;
+    --text: #2b2d42;
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --border: #e9ecef;
+}
+
+[data-theme="dark"] {
+    --primary: #3a56d4;
+    --success: #3aa884;
+    --danger: #d91a6b;
+    --text: #f8f9fa;
+    --bg: #121212;
+    --card-bg: #1e1e1e;
+    --border: #333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Roboto', 'Roboto Mono', monospace, Arial, sans-serif;
+    color: #493c3c;
+    background:
+        linear-gradient(30deg, #242324 0%, #0a0a0a 100%),
+        url("https://www.transparenttextures.com/patterns/green-dust-and-scratches.png");
+    background-blend-mode: lighten;
+    background-attachment: fixed;
+    background-size: cover, 300px 300px;
+    animation: butterflow 50s cubic-bezier(0, 0.28, 0.175, 1) infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+@keyframes gradientMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
+.app-header {
+    background: rgba(114,87,120,0.18); /* subtle purple tint */
+    box-shadow: 0 4px 24px 0 rgba(114,87,120,0.18);
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    border: 1.5px solid #a084ca33;
+    color: #131313;
+    margin-bottom: 30px;
+    padding: 32px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: box-shadow 0.2s;
+}
+
+.app-header h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+/* Stock Selector */
+.selector-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 56px;
+    gap: 15px;
+    align-items: end;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text);
+}
+
+.form-control {
+    width: 100%;
+    min-height: 44px;
+    font-size: 1rem;
+    padding: 0 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-warning {
+    background-color: var(--warning);
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Indicators */
+.indicator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.indicator-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+}
+
+.indicator-card h3 {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+}
+
+.indicator-card p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.signal-buy {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.signal-sell {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.signal-hold {
+    color: var(--warning);
+    font-weight: 600;
+}
+
+/* Portfolio Metrics */
+.portfolio-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.metric-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+}
+
+.metric-card h3 {
+    font-size: 0.95rem;
+    color: #6c757d;
+    margin-bottom: 8px;
+}
+
+.metric-card p {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* Tables */
+.table-container {
+    overflow-x: auto;
+}
+
+.holdings-table,
+.transaction-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.95rem;
+}
+
+.holdings-table th,
+.transaction-table th {
+    background-color: var(--card-bg);
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text);
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+}
+
+.holdings-table td,
+.transaction-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+/* Numeric columns */
+.holdings-table td:nth-child(3),
+.holdings-table td:nth-child(4),
+.holdings-table td:nth-child(5),
+.holdings-table td:nth-child(6),
+.transaction-table td:nth-child(4),
+.transaction-table td:nth-child(5),
+.transaction-table td:nth-child(7) {
+    text-align: right;
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* P&L coloring */
+.pl-positive {
+    color: var(--success);
+}
+
+.pl-negative {
+    color: var(--danger);
+}
+
+.pl-neutral {
+    color: var(--text);
+}
+
+/* Action buttons */
+.btn-exit {
+    padding: 6px 12px;
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.export-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-export,
+.btn-export-option {
+    width: 180px;           /* Make button wider for text */
+    height: 48px;
+    padding: 0 18px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 10px;              /* Space between icon and text */
+    font-size: 1.15rem;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--primary) 60%, #272528 100%);
+    color: #151414;
+    box-shadow: 0 4px 16px rgba(9, 9, 9, 0.1);
+    border: none;
+    outline: none;
+    transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-export-option i {
+    font-size: 1.3em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+.loading {
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+.spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e0e7ff;
+    border-top: 4px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error {
+    color: #d32f2f;
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* Glassy, slightly darker cards for contrast */
+.card, .container, .modal-content {
+    background: rgba(50, 60, 55, 0.9);
+    box-shadow: 0 8px 32px 0 rgba(67,97,238,0.08);
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    border: 1px solid #211f23;
+    color: #3d314a;
+    position: relative;
+    z-index: 1;
+}
+
+/* Headings with soft blue accent */
+h1, h2, h3, .app-header h1 {
+    color: #033302;
+    text-shadow: 0 2px 16px #e0e7ff44, 0 1px 2px #fff8;
+}
+
+/* Table text and numbers */
+.holdings-table td,
+.transaction-table td,
+.holdings-table th,
+.transaction-table th {
+    color: #3d314a;
+    background: transparent;
+}
+
+/* Button tweaks for light bg with soft shadow */
+.btn, .btn-primary, .btn-export, .btn-export-option {
+    color: #fff !important;
+    background: linear-gradient(90deg, #2d252d 60%, #352b35 100%);
+    border: none;
+    box-shadow: 0 2px 8px #4361ee22;
+}
+
+.btn:hover, .btn-primary:hover, .btn-export:hover, .btn-export-option:hover {
+    background: linear-gradient(90deg, #1d1d1e 60%, #171717 100%);
+    opacity: 0.97;
+    box-shadow: 0 4px 16px #96a6ef33;
+}
+
+/* Inputs and selects */
+.form-control, input, select {
+    background: #f8fafc;
+    color: #232526;
+    border: 1px solid #bfc9d9;
+    border-radius: 6px;
+    padding: 0 12px;
+}
+
+.form-control:focus, input:focus, select:focus {
+    outline: 2px solid #a084ca;
+    background: #fff;
+    color: #3d314a;
+}
+.card, .container, .modal-content {
+    background: rgba(255,255,255,0.85); /* More transparent for floating effect */
+    box-shadow: 0 8px 32px 0 rgba(114,87,120,0.18), 0 1.5px 8px 0 rgba(0,0,0,0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 22px;
+    border: 1.5px solid #a084ca33;
+    color: #3d314a;
+    margin-bottom: 32px; /* More space between cards */
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.2s;
+}
+
+.card {
+    padding: 32px 24px;
+}
+
+.card:hover {
+    box-shadow: 0 16px 48px 0 rgba(114,87,120,0.22), 0 3px 16px 0 rgba(0,0,0,0.10);
+}
+.card, .container, .modal-content {
+    background: rgba(71, 86, 75, 0.75); /* lighter, more transparent */
+    box-shadow: 0 8px 32px 0 rgba(114,87,120,0.12), 0 1.5px 8px 0 rgba(0,0,0,0.06);
+    backdrop-filter: blur(8px);
+    border-radius: 22px;
+    border: 1.5px solid #a084ca33;
+    color: #3d314a;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+    transition: box-shadow 0.2s;
+}
+.card-main-heading {
+    background: rgba(139, 154, 139, 0.22); /* more purple, more transparent */
+    color: #fff;
+    box-shadow: 0 8px 32px 0 rgba(114,87,120,0.12);
+    border: 1.5px solid #a084ca44;
+}
+
+.form-control, input, select {
+    border-radius: 18px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+.form-control:focus, input:focus, select:focus {
+    box-shadow: 0 0 0 2px #796d8d44;
+    border-color: #a084ca;
+}
+
+.card {
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(114,87,120,0.18), 0 1.5px 8px 0 rgba(0,0,0,0.08);
+    padding: 32px 24px;
+    margin-bottom: 32px;
+    background: rgba(199, 207, 197, 0.85);
+    transition: box-shadow 0.2s;
+}
+.card:hover {
+    box-shadow: 0 16px 48px 0 rgba(114,87,120,0.22), 0 3px 16px 0 rgba(0,0,0,0.10);
+}
+
+h2 {
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #070607;
+}
+h2 i {
+    font-size: 1.3em;
+    color: #4f4958;
+}
+
+.btn-export-option {
+    background: linear-gradient(90deg, #3c3941 60%, #232223 100%);
+    color: #fff;
+    border-radius: 14px;
+    font-size: 1.1rem;
+    padding: 0 24px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    box-shadow: 0 4px 16px rgba(114,87,120,0.10);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+    cursor: pointer;
+}
+.btn-export-option:hover {
+    background: linear-gradient(90deg, #242124 60%, #0c0c0c 100%);
+    box-shadow: 0 8px 24px rgba(114,87,120,0.18);
+    transform: translateY(-2px) scale(1.04);
+}
+.btn-export-option i {
+    font-size: 1.3em;
+}
+
+.spinner {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e0e7ff;
+    border-top: 4px solid #a084ca;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin: 24px auto;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .selector-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .portfolio-metrics {
+        grid-template-columns: 1fr;
+    }
+    
+    .indicator-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
